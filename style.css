@@ -1,0 +1,645 @@
+/* ============================================================
+  01 - VARIABLES & ROOT
+============================================================ */
+
+:root {
+  /* === Primary === */
+  --color-accent-red: hsl(7, 99%, 70%);
+  --color-accent-green: hsl(167, 34%, 41%);
+  --color-accent-yellow: hsl(51, 100%, 49%);
+  --color-accent-blue-dark: hsl(198, 62%, 26%); /* photography text */
+  --color-accent-green-dark: hsl(167, 40%, 24%); /* graphic design text */
+
+  --color-footer: hsl(167, 44%, 70%);
+
+  /* === Neutral === */
+  --color-white: hsl(0, 100%, 100%);
+  --color-neutral-600: hsl(213, 9%, 39%); /* dark gray */
+  --color-neutral-400: hsl(210, 4%, 67%); /* light gray */
+  --color-neutral-550: hsl(232, 10%, 55%); /* medium gray */
+  --color-neutral-950: hsl(212, 27%, 19%); /* almost black */
+
+  /* Hover */
+  --color-btn-hover: hsl(201, 100%, 72%);
+
+  /* === Font Family === */
+  --font-serif: "Fraunces", serif;
+  --font-sans: "Barlow", sans-serif;
+}
+
+/* ============================================================
+  02 - RESET / GLOBAL
+============================================================ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+}
+
+ul {
+  list-style: none;
+}
+
+main.container {
+  display: flex;
+  max-width: 100%;
+  flex-direction: column;
+}
+
+main.container picture,
+main.container img {
+  width: 100%;
+  display: flex;
+  object-fit: cover;
+}
+
+/* ============================================================
+  03 - NAVBAR / HEADER
+============================================================ */
+
+div.navbar {
+  width: 100%;
+  z-index: 999;
+  display: flex;
+  position: absolute;
+  padding: 40px 20px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+div.navbar .logo,
+[data-menu="button"] {
+  display: block;
+  cursor: pointer;
+}
+
+[data-menu="button"] {
+  background: none;
+  border: none;
+}
+
+.logo:hover {
+  opacity: 0.7;
+}
+
+ul.menu-items::before {
+  top: -20px;
+  right: 0;
+  width: 0;
+  height: 0;
+  content: " ";
+  display: block;
+  position: absolute;
+  border-top: 10px solid transparent;
+  border-left: 10px solid transparent;
+  border-right: 10px solid var(--color-white);
+  border-bottom: 10px solid var(--color-white);
+}
+
+ul.menu-items {
+  gap: 40px;
+  top: 100px;
+  max-width: 100%;
+  left: 20px;
+  right: 20px;
+  display: none;
+  height: 280px;
+  text-align: center;
+  position: absolute;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  padding-bottom: 10px;
+  font-family: var(--font-sans);
+  background-color: var(--color-white);
+}
+
+ul.menu-items.active {
+  display: flex;
+  animation: showMenu 0.5s forwards;
+}
+
+ul.menu-items .btn {
+  font-weight: bold;
+  padding: 12px 20px;
+  border-radius: 100px;
+  text-transform: uppercase;
+  font-family: var(--font-serif);
+  color: var(--color-neutral-950);
+  background-color: var(--color-accent-yellow);
+}
+
+ul.menu-items a {
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--color-neutral-550);
+}
+
+/* ============================================================
+  04 - HERO
+============================================================ */
+
+section.main-hero {
+  position: relative;
+}
+
+section.main-hero img {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  object-position: center;
+}
+
+section.main-hero h1 {
+  left: 50%;
+  top: 165px;
+  margin: 0 auto;
+  font-weight: 900;
+  position: absolute;
+  text-align: center;
+  font-size: 2.25rem;
+  letter-spacing: 6px;
+  color: var(--color-white);
+  text-transform: uppercase;
+  font-family: var(--font-serif);
+  transform: translate(-50%, -50%);
+}
+
+section.main-hero h1::after {
+  left: 45%;
+  top: 130px;
+  width: 38px;
+  content: " ";
+  height: 120px;
+  overflow: hidden;
+  /* z-index: -1; */
+  position: absolute;
+  justify-content: center;
+  background-repeat: no-repeat;
+  transform: translate(-50%, -50%);
+  animation: bounce 2s ease-in-out infinite;
+  background-image: url("./images/icon-arrow-down.svg");
+}
+
+/* ============================================================
+  05 - GRID / SECTIONS
+============================================================ */
+
+section.grid {
+  display: grid;
+  /* z-index: 1; */
+  grid-template-columns: 1fr;
+}
+
+div.grid-item div.content {
+  gap: 20px;
+  display: flex;
+  padding: 0 20px;
+  text-align: center;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+div.grid-item div.content h2 {
+  font-size: 2rem;
+  font-weight: 900;
+  font-family: var(--font-serif);
+  color: var(--color-neutral-950);
+}
+
+div.item1 div.content,
+div.item2 div.content {
+  padding: 60px 20px;
+}
+
+div.item1 p,
+div.item2 p {
+  line-height: 1.5;
+  font-weight: 500;
+  font-size: 1.125rem;
+  font-family: var(--font-sans);
+  color: var(--color-neutral-550);
+}
+
+div.item3,
+div.item4 {
+  position: relative;
+}
+
+div.item3 img,
+div.item4 img {
+  width: 100%;
+  max-height: 500px;
+  object-fit: cover;
+  object-position: center;
+}
+
+div.item3 div.content,
+div.item4 div.content {
+  bottom: 60px;
+  position: absolute;
+}
+
+div.grid-item div.content h3 {
+  font-weight: 900;
+  font-size: 1.5rem;
+  text-transform: capitalize;
+  font-family: var(--font-serif);
+}
+
+div.item3 div.content h3,
+div.item3 div.content p {
+  color: var(--color-accent-green-dark);
+}
+
+div.item4 div.content h3,
+div.item4 div.content p {
+  color: var(--color-accent-blue-dark);
+}
+
+div.grid-item div.content p {
+  margin-top: 10px;
+  font-weight: 500;
+  line-height: 1.5;
+  font-family: var(--font-sans);
+}
+
+/* ============================================================
+  06 - TESTIMONIALS
+============================================================ */
+
+section.testimonials {
+  padding: 60px 20px;
+}
+
+section.testimonials h3 {
+  text-align: center;
+  letter-spacing: 2px;
+  margin-bottom: 60px;
+  text-transform: uppercase;
+  font-family: var(--font-serif);
+  color: var(--color-neutral-550);
+}
+
+figure.testimonial img {
+  width: 60px;
+  border-radius: 50%;
+}
+
+figure.testimonial {
+  gap: 30px;
+  display: flex;
+  margin: 30px auto;
+  text-align: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+figure.testimonial:not(:last-child) {
+  margin-bottom: 80px;
+}
+
+blockquote p {
+  font-weight: 600;
+  max-width: 40ch;
+  line-height: 1.5;
+  font-size: 1.135rem;
+  font-family: var(--font-sans);
+  color: var(--color-neutral-600);
+}
+
+figure.testimonial h4 {
+  font-weight: 900;
+  font-size: 1.125rem;
+  font-family: var(--font-serif);
+  color: var(--color-neutral-950);
+}
+
+figcaption p {
+  margin-top: 10px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  font-family: var(--font-sans);
+  color: var(--color-neutral-400);
+}
+
+/* ============================================================
+  07 - GALLERY
+============================================================ */
+
+.gallery {
+  gap: 0px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+div.photo img {
+  width: 100%;
+  height: 100%;
+}
+
+/* ============================================================
+  08 - FOOTER
+============================================================ */
+
+footer {
+  padding: 80px 40px;
+  text-align: center;
+  background-color: var(--color-footer);
+}
+
+footer ul.links {
+  gap: 40px;
+  display: flex;
+  margin-top: 40px;
+  align-items: center;
+  justify-content: center;
+}
+
+footer ul.links a:hover {
+  color: var(--color-white);
+}
+
+footer a {
+  text-decoration: none;
+  font-weight: 600;
+  font-family: var(--font-sans);
+  color: var(--color-accent-green);
+}
+
+ul.socials {
+  gap: 30px;
+  display: flex;
+  margin-top: 80px;
+  align-items: center;
+  justify-content: center;
+}
+
+ul.socials a {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+}
+
+ul.socials a:hover {
+  filter: brightness(0) invert(1);
+}
+
+/* ============================================================
+  09 - BUTTONS / LINKS
+============================================================ */
+
+.lm-btn {
+  border: none;
+  cursor: pointer;
+  margin-top: 20px;
+  background: none;
+  font-weight: 900;
+  font-size: 1.1rem;
+  position: relative;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-family: var(--font-serif);
+  color: var(--color-neutral-950);
+}
+
+.lm-btn::after {
+  top: 14px;
+  left: -8px;
+  z-index: -1;
+  content: ".";
+  opacity: 0.3;
+  width: 145px;
+  font-size: 8px;
+  display: block;
+  color: transparent;
+  position: absolute;
+  border-radius: 100px;
+}
+
+.lm-btn:hover::after {
+  opacity: 1;
+}
+
+.brand.lm-btn::after {
+  background-color: var(--color-accent-yellow);
+}
+
+.standout.lm-btn::after {
+  background-color: var(--color-accent-red);
+}
+
+/* ============================================================
+  10 - MEDIA QUERIES
+============================================================ */
+
+@media (min-width: 768px) {
+  nav.nav-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: green;
+  }
+
+  div.navbar {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    max-width: 1200px;
+  }
+
+  [data-menu="button"] {
+    display: none;
+  }
+
+  ul.menu-items::before {
+    display: none;
+  }
+
+  ul.menu-items {
+    height: auto;
+    display: flex;
+    padding-top: 0;
+    position: static;
+    flex-direction: row;
+    background-color: transparent;
+  }
+
+  ul.menu-items a {
+    color: var(--color-white);
+  }
+
+  ul.menu-items .btn {
+    font-weight: bold;
+    padding: 16px 24px;
+    font-size: 0.875rem;
+    border-radius: 100px;
+    text-transform: uppercase;
+    font-family: var(--font-serif);
+    color: var(--color-neutral-950);
+    background-color: var(--color-white);
+  }
+
+  ul.menu-items .btn:hover {
+    color: var(--color-white);
+    background-color: var(--color-btn-hover);
+  }
+
+  ul.menu-items {
+    gap: 40px;
+    display: flex;
+  }
+
+  ul.menu-items a {
+    text-decoration: none;
+    font-weight: 500;
+    color: var(--color-white);
+    transition: 0.3s;
+  }
+
+  ul.menu-items li:not(:last-child) a:hover {
+    opacity: 0.75;
+  }
+
+  section.main-hero img {
+    height: 600px;
+    object-position: center;
+  }
+
+  section.main-hero h1 {
+    top: 200px;
+    font-size: 3rem;
+  }
+
+  section.main-hero h1::after {
+    left: 47.1%;
+  }
+
+  div.grid-item.item1,
+  div.grid-item.item2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  div.item1 .content {
+    order: -1;
+  }
+
+  div.item1 div.content,
+  div.item2 div.content {
+    text-align: inherit;
+    width: 60%;
+    margin: auto;
+    padding: 0;
+    align-items: flex-start;
+  }
+
+  div.grid-item picture {
+    height: 600px;
+    object-fit: cover;
+  }
+
+  div.grid-item div.content h2 {
+    font-size: 2.5em;
+    max-width: 15ch;
+  }
+
+  section.grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  div.item1,
+  div.item2 {
+    grid-column: 1 / -1;
+  }
+
+  div.item3 img,
+  div.item4 img {
+    max-height: 100%;
+  }
+
+  div.item3,
+  div.item4 {
+    display: flex;
+    justify-content: center;
+  }
+
+  div.item3 div.content p,
+  div.item4 div.content p {
+    max-width: 38ch;
+    margin: 0 auto;
+  }
+
+  section.testimonials {
+    gap: 60px;
+    display: grid;
+    margin: 40px auto 80px auto;
+    max-width: 1200px;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  section.testimonials h3 {
+    grid-column: 1 / -1;
+  }
+
+  figure.testimonial {
+    margin: 0;
+  }
+
+  figure.testimonial:not(:last-child) {
+    margin: 0;
+  }
+
+  .gallery {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .gallery picture,
+  .gallery source,
+  .gallery img {
+    display: block;
+    max-height: 400px;
+    object-fit: cover;
+  }
+}
+
+@media (min-width: 1400px) {
+  section.main-hero img {
+    height: 700px;
+  }
+}
+
+/* ============================================================
+  11 - ANIMATIONS / KEYFRAMES
+============================================================ */
+
+@keyframes showMenu {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -40px, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
