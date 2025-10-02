@@ -2,16 +2,14 @@ const menuButton = document.querySelector('[data-menu="button"]');
 const menuList = document.querySelector('[data-menu="list"]');
 
 function handleMenu() {
-  if (!menuList.classList.contains("active")) {
-    menuList.classList.add("active");
-    menuButton.setAttribute("aria-expanded", "true");
+  const isActive = menuList.classList.toggle("active");
+  menuButton.setAttribute("aria-expanded", isActive);
 
-    function closeMenu() {
+  if (isActive) {
+    handleOutside(() => {
       menuList.classList.remove("active");
       menuButton.setAttribute("aria-expanded", "false");
-    }
-
-    handleOutside(closeMenu);
+    });
   }
 }
 
