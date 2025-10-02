@@ -3,6 +3,7 @@ const menuList = document.querySelector('[data-menu="list"]');
 
 function handleMenu() {
   const isActive = menuList.classList.toggle("active");
+
   menuButton.setAttribute("aria-expanded", isActive);
 
   if (isActive) {
